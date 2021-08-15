@@ -1,0 +1,23 @@
+fly:
+  enabled: "&a&lS&2&lF &8&l> &7Fly &aenabled&7."
+  disabled: "&a&lS&2&lF &8&l> &7Fly &cdisabled&7."
+  end: "&a&lS&2&lF &8&l> &7You were flying a total of &a%time% seconds &7with a total cost of &a$%cost%&7."
+  time-info: "&a&lS&2&lF &8&l> &7You have &f%time% &7seconds of free flight."
+  time-info-other: "&a&lS&2&lF &8&l> &f%player% &7have &f%time% &7seconds of free flight."
+  other:
+    enabled: "&a&lS&2&lF &8&l> &7Fly &aenabled &7to &f%player%&7."
+    disabled: "&a&lS&2&lF &8&l> &7Fly &cdisabled &7to &f%player%&7."
+admin:
+  time-given: "&a&lS&2&lF &8&l> &7Player &f%player%&7 received &f%time%&7 seconds of free flight."
+  time-setted: "&a&lS&2&lF &8&l> &7Free flight time of &f%player%&7 has been established on &f%time%&7 seconds."
+  time-removed: "&a&lS&2&lF &8&l> &f%time%&7 seconds of free flight time have been from &f%player%&7."
+  reload: "&a&lS&2&lF &8&l> &7All files has been reloaded correctly."
+help:
+  - "&a&lSimple&2&lFly &fcommands"
+  - " &7- &6/sf time info [player]: &fCheck free flight time."
+  - " &7- &6/sf time <set-give-remove> <player> <time>: &fSet-Remove-Add free flight time to a player."
+  - " &7- &6/sf reload: &fReload plugin files."
+insufficient-money: "&a&lS&2&lF &8&l> &cYou don't have enough money to fly. The cost per second is &a%cost%&c."
+no-permissions: "&a&lS&2&lF &8&l> &cYou don't have permissions to do that."
+insufficient-args: "&a&lS&2&lF &8&l> &cInsufficient arguments, correct usage &7%usage%&c."
+invalid-player: "&a&lS&2&lF &8&l> &cThat player doesn't exist!"

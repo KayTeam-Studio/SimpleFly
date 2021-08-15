@@ -1,0 +1,9 @@
+cost-per-second: 5
+info:
+  boss-bar:
+    enabled: true
+    text: "&a&lS&2&lF &8&l> &7Time elapsed &7%time% seconds&f."
+    color: "GREEN"
+  action-bar:
+    enabled: true
+    text: "&a&lS&2&lF &8&l> &7Time elapsed &7%time% seconds&f."

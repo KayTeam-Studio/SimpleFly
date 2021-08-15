@@ -1,0 +1,17 @@
+name: SimpleFly
+main: org.kayteam.simplefly.SimpleFly
+version: 1.0
+website: https://kayteam.org
+loadbefore: [Vault]
+depend: [Vault]
+softdepend: [PlaceholderAPI]
+commands:
+  fly:
+    description:
+  simplefly:
+    aliases: [sf]
+    description:
+permissions:
+  simplefly.admin:
+    children: [simplefly.bypass, simplefly.use, simplefly.time.set, simplefly.time.give, simplefly.time.remove, simplefly.time.info, simplefly.time.info.others, simplefly.help]
+
