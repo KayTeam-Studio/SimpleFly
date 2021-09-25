@@ -7,7 +7,7 @@ import org.kayteam.simplefly.SimpleFly;
 
 public class LeaveEvent implements Listener {
 
-    private SimpleFly plugin;
+    private final SimpleFly plugin;
 
     public LeaveEvent(SimpleFly plugin) {
         this.plugin = plugin;

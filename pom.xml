@@ -6,7 +6,7 @@
 
     <groupId>org.kayteam</groupId>
     <artifactId>SimpleFly</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -25,6 +25,10 @@
         <repository>
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
+        <repository>
+            <id>KayTeam</id>
+            <url>http://20.98.165.115:1000/snapshots/</url>
         </repository>
     </repositories>
 
@@ -46,6 +50,11 @@
             <artifactId>placeholderapi</artifactId>
             <version>2.10.10</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.kayteam</groupId>
+            <artifactId>KayTeamAPI</artifactId>
+            <version>1.1.4</version>
         </dependency>
     </dependencies>
 </project>

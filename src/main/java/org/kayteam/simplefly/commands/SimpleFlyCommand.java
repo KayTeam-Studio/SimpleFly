@@ -11,7 +11,7 @@ import org.kayteam.simplefly.util.CommandManager;
 
 public class SimpleFlyCommand implements CommandExecutor {
 
-    private SimpleFly plugin;
+    private final SimpleFly plugin;
 
     public SimpleFlyCommand(SimpleFly plugin) {
         this.plugin = plugin;

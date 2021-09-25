@@ -2,23 +2,20 @@ package org.kayteam.simplefly.fly;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
-import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.kayteam.simplefly.SimpleFly;
 import org.kayteam.simplefly.util.Color;
 import org.kayteam.simplefly.util.Task;
-import org.kayteam.simplefly.util.Yaml;
 
 public class FlyTask extends Task {
 
-    private SimpleFly plugin;
+    private final SimpleFly plugin;
     public int timeElapsed = 0;
-    private Player player;
+    private final Player player;
 
     private BossBar bossBar;
 

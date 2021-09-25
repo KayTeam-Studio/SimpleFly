@@ -1,18 +1,18 @@
 package org.kayteam.simplefly.fly;
 
 import org.bukkit.entity.Player;
+import org.kayteam.kayteamapi.yaml.Yaml;
 import org.kayteam.simplefly.SimpleFly;
-import org.kayteam.simplefly.util.Yaml;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class FlyManager {
 
-    private SimpleFly plugin;
+    private final SimpleFly plugin;
 
-    private Map<Player, FlyTask> playersFlying = new HashMap<>();
-    private Map<Player, Integer> playersData = new HashMap<>();
+    private final Map<Player, FlyTask> playersFlying = new HashMap<>();
+    private final Map<Player, Integer> playersData = new HashMap<>();
 
     public FlyManager(SimpleFly plugin) {
         this.plugin = plugin;

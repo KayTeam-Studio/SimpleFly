@@ -7,7 +7,7 @@ import org.kayteam.simplefly.SimpleFly;
 
 public class SimpleFlyExpansion extends PlaceholderExpansion {
 
-    private SimpleFly plugin;
+    private final SimpleFly plugin;
 
     public SimpleFlyExpansion(SimpleFly plugin) {
         this.plugin = plugin;

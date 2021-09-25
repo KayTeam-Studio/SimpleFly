@@ -5,6 +5,10 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.kayteam.kayteamapi.BrandSender;
+import org.kayteam.kayteamapi.bStats.Metrics;
+import org.kayteam.kayteamapi.updatechecker.UpdateChecker;
+import org.kayteam.kayteamapi.yaml.Yaml;
 import org.kayteam.simplefly.commands.FlyCommand;
 import org.kayteam.simplefly.commands.SimpleFlyCommand;
 import org.kayteam.simplefly.fly.FlyManager;
@@ -13,10 +17,8 @@ import org.kayteam.simplefly.listeners.JoinEvent;
 import org.kayteam.simplefly.listeners.LeaveEvent;
 import org.kayteam.simplefly.listeners.ToggleFlyEvent;
 import org.kayteam.simplefly.placeholderapi.SimpleFlyExpansion;
-import org.kayteam.simplefly.util.KayTeam;
-import org.kayteam.simplefly.util.Metrics;
-import org.kayteam.simplefly.util.UpdateChecker;
-import org.kayteam.simplefly.util.Yaml;
+
+import java.util.Objects;
 
 public class SimpleFly extends JavaPlugin {
 
@@ -24,7 +26,7 @@ public class SimpleFly extends JavaPlugin {
     public Yaml messages = new Yaml(this, "messages");
 
     private static Economy econ = null;
-    private FlyManager flyManager = new FlyManager(this);
+    private final FlyManager flyManager = new FlyManager(this);
 
     public int costPerSecond = 0;
 
@@ -39,7 +41,7 @@ public class SimpleFly extends JavaPlugin {
         registerCommands();
         new SimpleFlyExpansion(this).register();
         loadPlayersData();
-        KayTeam.sendBrandMessage(this, "&aEnabled");
+        BrandSender.sendBrandMessage(this, "&aEnabled");
     }
 
     private void loadPlayersData() {
@@ -53,8 +55,8 @@ public class SimpleFly extends JavaPlugin {
     }
 
     private void registerCommands() {
-        getCommand("fly").setExecutor(new FlyCommand(this));
-        getCommand("simplefly").setExecutor(new SimpleFlyCommand(this));
+        Objects.requireNonNull(getCommand("fly")).setExecutor(new FlyCommand(this));
+        Objects.requireNonNull(getCommand("simplefly")).setExecutor(new SimpleFlyCommand(this));
     }
 
     private void checkPlayersFliying() {
@@ -80,11 +82,10 @@ public class SimpleFly extends JavaPlugin {
     }
 
     private void enableUpdateChecker(){
-        /*
-        updateChecker = new UpdateChecker(this, 0);
+        updateChecker = new UpdateChecker(this, 95365);
         if (updateChecker.getUpdateCheckResult().equals(UpdateChecker.UpdateCheckResult.OUT_DATED)) {
             updateChecker.sendOutDatedMessage(getServer().getConsoleSender());
-        }*/
+        }
     }
 
     public FlyManager getFlyManager() {
@@ -97,7 +98,7 @@ public class SimpleFly extends JavaPlugin {
     }
 
     private void enableStats(){
-        int pluginId = 12374;
+        int pluginId = 12464;
         Metrics metrics = new Metrics(this, pluginId);
     }
 
@@ -118,6 +119,6 @@ public class SimpleFly extends JavaPlugin {
         for(FlyTask task : getFlyManager().getPlayersFlying().values()){
             task.stopScheduler();
         }
-        KayTeam.sendBrandMessage(this, "&cDisabled");
+        BrandSender.sendBrandMessage(this, "&cDisabled");
     }
 }

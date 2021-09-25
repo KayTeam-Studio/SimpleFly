@@ -6,13 +6,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.kayteam.kayteamapi.yaml.Yaml;
 import org.kayteam.simplefly.SimpleFly;
 import org.kayteam.simplefly.util.CommandManager;
-import org.kayteam.simplefly.util.Yaml;
 
 public class FlyCommand implements CommandExecutor {
 
-    private SimpleFly plugin;
+    private final SimpleFly plugin;
 
     public FlyCommand(SimpleFly plugin) {
         this.plugin = plugin;

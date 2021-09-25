@@ -10,7 +10,7 @@ import org.kayteam.simplefly.fly.FlyTask;
 
 public class ToggleFlyEvent implements Listener {
 
-    private SimpleFly plugin;
+    private final SimpleFly plugin;
 
     public ToggleFlyEvent(SimpleFly plugin) {
         this.plugin = plugin;

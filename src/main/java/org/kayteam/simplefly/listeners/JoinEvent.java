@@ -5,11 +5,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.kayteam.simplefly.SimpleFly;
 import org.kayteam.simplefly.fly.FlyTask;
-import org.kayteam.simplefly.util.Yaml;
 
 public class JoinEvent implements Listener {
 
-    private SimpleFly plugin;
+    private final SimpleFly plugin;
 
     public JoinEvent(SimpleFly plugin) {
         this.plugin = plugin;
