@@ -30,6 +30,8 @@ public class SimpleFly extends JavaPlugin {
 
     public int costPerSecond = 0;
 
+    private boolean bossBar;
+
     @Override
     public void onEnable() {
         registerFiles();
@@ -41,7 +43,23 @@ public class SimpleFly extends JavaPlugin {
         registerCommands();
         new SimpleFlyExpansion(this).register();
         loadPlayersData();
+        try {
+            checkBossBar();
+        } catch (ClassNotFoundException ignored) {}
         BrandSender.sendBrandMessage(this, "&aEnabled");
+    }
+
+    public boolean isBossBar() {
+        return bossBar;
+    }
+
+    private void checkBossBar() throws ClassNotFoundException {
+        try{
+            Class.forName("org.bukkit.boss.BarColor");
+            this.bossBar = true;
+        }catch(NoClassDefFoundError | ClassNotFoundException e){
+            this.bossBar = false;
+        }
     }
 
     private void loadPlayersData() {

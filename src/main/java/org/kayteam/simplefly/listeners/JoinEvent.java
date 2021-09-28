@@ -1,5 +1,6 @@
 package org.kayteam.simplefly.listeners;
 
+import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -17,10 +18,12 @@ public class JoinEvent implements Listener {
     @EventHandler
     private void onJoin(PlayerJoinEvent event){
         plugin.getFlyManager().giveFreeTime(event.getPlayer(), 0);
-        if(event.getPlayer().isFlying()){
-            FlyTask flyTask = new FlyTask(plugin, event.getPlayer());
-            flyTask.startScheduler();
-            plugin.getFlyManager().getPlayersFlying().put(event.getPlayer(), flyTask);
+        if(event.getPlayer().getGameMode() == GameMode.ADVENTURE || event.getPlayer().getGameMode() == GameMode.SURVIVAL){
+            if(event.getPlayer().isFlying()){
+                FlyTask flyTask = new FlyTask(plugin, event.getPlayer());
+                flyTask.startScheduler();
+                plugin.getFlyManager().getPlayersFlying().put(event.getPlayer(), flyTask);
+            }
         }
     }
 }

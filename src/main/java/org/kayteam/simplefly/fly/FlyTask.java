@@ -1,5 +1,6 @@
 package org.kayteam.simplefly.fly;
 
+import com.cryptomorin.xseries.messages.ActionBar;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -7,9 +8,9 @@ import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
+import org.kayteam.kayteamapi.scheduler.Task;
 import org.kayteam.simplefly.SimpleFly;
 import org.kayteam.simplefly.util.Color;
-import org.kayteam.simplefly.util.Task;
 
 public class FlyTask extends Task {
 
@@ -27,11 +28,13 @@ public class FlyTask extends Task {
         this.player = player;
         plugin.getFlyManager().getPlayersFlying().put(player, this);
         if(plugin.config.getBoolean("info.boss-bar.enabled")){
-            bossBar = Bukkit.createBossBar(Color.convert(plugin.config.getString("info.boss-bar.text")
-                            .replaceAll("%time%", String.valueOf(timeElapsed+1)))
-                            , BarColor.valueOf(plugin.config.getString("info.boss-bar.color", "GREEN")), BarStyle.SOLID);
-            bossBar.addPlayer(player);
-            bossBar.setVisible(true);
+            if(plugin.isBossBar()){
+                bossBar = Bukkit.createBossBar(Color.convert(plugin.config.getString("info.boss-bar.text")
+                                .replaceAll("%time%", String.valueOf(timeElapsed+1)))
+                                , BarColor.valueOf(plugin.config.getString("info.boss-bar.color", "GREEN")), BarStyle.SOLID);
+                bossBar.addPlayer(player);
+                bossBar.setVisible(true);
+            }
         }
     }
 
@@ -58,13 +61,14 @@ public class FlyTask extends Task {
             return;
         }
         if(plugin.config.getBoolean("info.boss-bar.enabled")){
-            bossBar.setTitle(Color.convert(plugin.config.getString("info.boss-bar.text")
-                    .replaceAll("%time%", String.valueOf(timeElapsed+1))));
+            if(plugin.isBossBar()){
+                bossBar.setTitle(Color.convert(plugin.config.getString("info.boss-bar.text")
+                        .replaceAll("%time%", String.valueOf(timeElapsed+1))));
+            }
         }
         if(plugin.config.getBoolean("info.action-bar.enabled")){
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
-                    new TextComponent(Color.convert(plugin.config.getString("info.action-bar.text")
-                            .replaceAll("%time%", String.valueOf(timeElapsed+1)))));
+            ActionBar.sendActionBar(player, Color.convert(plugin.config.getString("info.action-bar.text")
+                    .replaceAll("%time%", String.valueOf(timeElapsed+1))));
         }
         timeElapsed++;
     }
@@ -75,14 +79,14 @@ public class FlyTask extends Task {
         flyManager.getPlayersFlying().remove(player);
         try{
             if(plugin.config.getBoolean("info.boss-bar.enabled")){
-                bossBar.setVisible(false);
-                bossBar.removePlayer(player);
-
+                if(plugin.isBossBar()){
+                    bossBar.setVisible(false);
+                    bossBar.removePlayer(player);
+                }
             }
         }catch (Exception ignored){}
         if(plugin.config.getBoolean("info.action-bar.enabled")){
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
-                    new TextComponent(""));
+            ActionBar.clearActionBar(player);
         }
         if(timeElapsed != 0 && !player.hasPermission("simplefly.bypass")){
             plugin.messages.sendMessage(player, "fly.end",
