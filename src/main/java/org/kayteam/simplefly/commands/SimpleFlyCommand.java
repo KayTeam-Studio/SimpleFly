@@ -11,15 +11,15 @@ import org.kayteam.simplefly.util.CommandManager;
 
 public class SimpleFlyCommand implements CommandExecutor {
 
-    private final SimpleFly plugin;
+    private final SimpleFly PLUGIN;
 
     public SimpleFlyCommand(SimpleFly plugin) {
-        this.plugin = plugin;
+        this.PLUGIN = plugin;
     }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        CommandManager commandManager = new CommandManager(plugin);
+        CommandManager commandManager = new CommandManager(PLUGIN);
         if(args.length>0){
             switch (args[0]){
                 case "time":{
@@ -31,17 +31,17 @@ public class SimpleFlyCommand implements CommandExecutor {
                                         if(commandManager.playerHasPerm(sender, "simplefly.time.info.others")){
                                             Player target = Bukkit.getPlayer(args[2]);
                                             if(target != null) {
-                                                plugin.messages.sendMessage(sender, "fly.time-info",
-                                                        new String[][]{{"%time%", String.valueOf(plugin.getFlyManager().getPlayersData().get(target))},
+                                                PLUGIN.messages.sendMessage(sender, "fly.time-info",
+                                                        new String[][]{{"%time%", String.valueOf(PLUGIN.getFlyManager().getPlayersData().get(target))},
                                                                 {"%player%", target.getName()}});
                                             }else{
-                                                plugin.messages.sendMessage(sender, "invalid-player");
+                                                PLUGIN.messages.sendMessage(sender, "invalid-player");
                                             }
                                         }
                                     }else{
                                         if(commandManager.playerHasPerm(sender, "simplefly.time.info")){
-                                            plugin.messages.sendMessage(sender, "fly.time-info",
-                                                    new String[][]{{"%time%", String.valueOf(plugin.getFlyManager().getPlayersData().get((Player)sender))}});
+                                            PLUGIN.messages.sendMessage(sender, "fly.time-info",
+                                                    new String[][]{{"%time%", String.valueOf(PLUGIN.getFlyManager().getPlayersData().get((Player)sender))}});
                                         }
                                     }
                                     break;
@@ -52,12 +52,12 @@ public class SimpleFlyCommand implements CommandExecutor {
                                             Player target = Bukkit.getPlayer(args[2]);
                                             if(target != null) {
                                                 int time = Integer.parseInt(args[3]);
-                                                plugin.getFlyManager().setFreeTime(target, time);
-                                                plugin.messages.sendMessage(sender, "admin.time-setted",
+                                                PLUGIN.getFlyManager().setFreeTime(target, time);
+                                                PLUGIN.messages.sendMessage(sender, "admin.time-setted",
                                                         new String[][]{{"%time%", String.valueOf(time)},
                                                         {"%player%", target.getName()}});
                                             }else{
-                                                plugin.messages.sendMessage(sender, "invalid-player");
+                                                PLUGIN.messages.sendMessage(sender, "invalid-player");
                                             }
                                         }else{
                                             commandManager.insufficientArgs(sender, "/sf time set <player> <seconds>");
@@ -71,12 +71,12 @@ public class SimpleFlyCommand implements CommandExecutor {
                                             Player target = Bukkit.getPlayer(args[2]);
                                             if(target != null) {
                                                 int time = Integer.parseInt(args[3]);
-                                                plugin.getFlyManager().giveFreeTime(target, time);
-                                                plugin.messages.sendMessage(sender, "admin.time-given",
+                                                PLUGIN.getFlyManager().giveFreeTime(target, time);
+                                                PLUGIN.messages.sendMessage(sender, "admin.time-given",
                                                         new String[][]{{"%time%", String.valueOf(time)},
                                                         {"%player%", target.getName()}});
                                             }else{
-                                                plugin.messages.sendMessage(sender, "invalid-player");
+                                                PLUGIN.messages.sendMessage(sender, "invalid-player");
                                             }
                                         }else{
                                             commandManager.insufficientArgs(sender, "/sf time give <player> <seconds>");
@@ -90,12 +90,12 @@ public class SimpleFlyCommand implements CommandExecutor {
                                             Player target = Bukkit.getPlayer(args[2]);
                                             if(target != null) {
                                                 int time = Integer.parseInt(args[3]);
-                                                plugin.getFlyManager().removeFreeTime(target, time);
-                                                plugin.messages.sendMessage(sender, "admin.time-removed",
+                                                PLUGIN.getFlyManager().removeFreeTime(target, time);
+                                                PLUGIN.messages.sendMessage(sender, "admin.time-removed",
                                                         new String[][]{{"%time%", String.valueOf(time)},
                                                                 {"%player%", target.getName()}});
                                             }else{
-                                                plugin.messages.sendMessage(sender, "invalid-player");
+                                                PLUGIN.messages.sendMessage(sender, "invalid-player");
                                             }
                                         }else{
                                             commandManager.insufficientArgs(sender, "/sf time remove <player> <seconds>");
@@ -113,29 +113,29 @@ public class SimpleFlyCommand implements CommandExecutor {
                         }
                     }else{
                         if (commandManager.playerHasPerm(sender, "simplefly.help")) {
-                            plugin.messages.sendMessage(sender, "help");
+                            PLUGIN.messages.sendMessage(sender, "help");
                         }
                     }
                     break;
                 }
                 case "reload": {
                     if (commandManager.playerHasPerm(sender, "simplefly.use")) {
-                        plugin.messages.reloadFileConfiguration();
-                        plugin.config.reloadFileConfiguration();
-                        plugin.messages.sendMessage(sender, "admin.reload");
+                        PLUGIN.messages.reloadFileConfiguration();
+                        PLUGIN.config.reloadFileConfiguration();
+                        PLUGIN.messages.sendMessage(sender, "admin.reload");
                     }
                     break;
                 }
                 default:{
                     if (commandManager.playerHasPerm(sender, "simplefly.help")) {
-                        plugin.messages.sendMessage(sender, "help");
+                        PLUGIN.messages.sendMessage(sender, "help");
                     }
                     break;
                 }
             }
         }else{
             if (commandManager.playerHasPerm(sender, "simplefly.help")) {
-                plugin.messages.sendMessage(sender, "help");
+                PLUGIN.messages.sendMessage(sender, "help");
             }
         }
         return false;

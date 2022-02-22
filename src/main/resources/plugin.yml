@@ -8,11 +8,18 @@ depend: [Vault]
 softdepend: [PlaceholderAPI]
 commands:
   fly:
-    description:
+    permission: simplefly.use
   simplefly:
     aliases: [sf]
-    description:
 permissions:
   simplefly.admin:
-    children: [simplefly.bypass, simplefly.use, simplefly.time.set, simplefly.time.give, simplefly.time.remove, simplefly.time.info, simplefly.time.info.others, simplefly.help]
+    children:
+      - simplefly.bypass
+      - simplefly.use
+      - simplefly.time.set
+      - simplefly.time.give
+      - simplefly.time.remove
+      - simplefly.time.info
+      - simplefly.time.info.others
+      - simplefly.help
 

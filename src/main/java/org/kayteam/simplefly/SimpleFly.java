@@ -5,10 +5,10 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.kayteam.kayteamapi.BrandSender;
-import org.kayteam.kayteamapi.bStats.Metrics;
-import org.kayteam.kayteamapi.updatechecker.UpdateChecker;
-import org.kayteam.kayteamapi.yaml.Yaml;
+import org.kayteam.api.BrandSender;
+import org.kayteam.api.bStats.Metrics;
+import org.kayteam.api.updatechecker.UpdateChecker;
+import org.kayteam.api.yaml.Yaml;
 import org.kayteam.simplefly.commands.FlyCommand;
 import org.kayteam.simplefly.commands.SimpleFlyCommand;
 import org.kayteam.simplefly.fly.FlyManager;
@@ -22,8 +22,8 @@ import java.util.Objects;
 
 public class SimpleFly extends JavaPlugin {
 
-    public Yaml config = new Yaml(this, "config");
-    public Yaml messages = new Yaml(this, "messages");
+    public final Yaml config = new Yaml(this, "config");
+    public final Yaml messages = new Yaml(this, "messages");
 
     private static Economy econ = null;
     private final FlyManager flyManager = new FlyManager(this);
@@ -39,10 +39,10 @@ public class SimpleFly extends JavaPlugin {
         enableStats();
         setupEconomy();
         registerListeners();
-        checkPlayersFliying();
+        flyManager.checkPlayersFliying();
         registerCommands();
         new SimpleFlyExpansion(this).register();
-        loadPlayersData();
+        flyManager.loadPlayersData();
         try {
             checkBossBar();
         } catch (ClassNotFoundException ignored) {}
@@ -62,12 +62,6 @@ public class SimpleFly extends JavaPlugin {
         }
     }
 
-    private void loadPlayersData() {
-        for(Player player : getServer().getOnlinePlayers()){
-            getFlyManager().giveFreeTime(player, 0);
-        }
-    }
-
     public static Economy getEconomy() {
         return econ;
     }
@@ -75,16 +69,6 @@ public class SimpleFly extends JavaPlugin {
     private void registerCommands() {
         Objects.requireNonNull(getCommand("fly")).setExecutor(new FlyCommand(this));
         Objects.requireNonNull(getCommand("simplefly")).setExecutor(new SimpleFlyCommand(this));
-    }
-
-    private void checkPlayersFliying() {
-        for(Player player : getServer().getOnlinePlayers()){
-            if(player.getGameMode() == GameMode.ADVENTURE || player.getGameMode() == GameMode.SURVIVAL){
-                if(player.getAllowFlight()){
-                    new FlyTask(this, player).startScheduler();
-                }
-            }
-        }
     }
 
     private void registerListeners() {

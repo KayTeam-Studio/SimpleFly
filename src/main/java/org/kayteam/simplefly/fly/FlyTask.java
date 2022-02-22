@@ -1,14 +1,12 @@
 package org.kayteam.simplefly.fly;
 
 import com.cryptomorin.xseries.messages.ActionBar;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
-import org.kayteam.kayteamapi.scheduler.Task;
+import org.kayteam.api.scheduler.Task;
 import org.kayteam.simplefly.SimpleFly;
 import org.kayteam.simplefly.util.Color;
 

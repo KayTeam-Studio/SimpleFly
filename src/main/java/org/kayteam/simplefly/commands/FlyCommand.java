@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import org.kayteam.kayteamapi.yaml.Yaml;
+import org.kayteam.api.yaml.Yaml;
 import org.kayteam.simplefly.SimpleFly;
 import org.kayteam.simplefly.util.CommandManager;
 
